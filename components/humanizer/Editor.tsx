@@ -9,7 +9,7 @@ interface EditorProps {
   disabled: boolean;
 }
 
-const MAX_LENGTH = 8000;
+const MAX_LENGTH = 90000; // ~15,000 words
 
 export function Editor({
   original,
@@ -19,13 +19,15 @@ export function Editor({
   onHumanizedChange,
   disabled,
 }: EditorProps) {
+  const wordCount = original.trim() ? original.trim().split(/\s+/).length : 0;
+
   return (
     <div className="grid divide-y divide-border overflow-hidden rounded-card border border-border bg-surface shadow-card sm:grid-cols-2 sm:divide-x sm:divide-y-0">
       <div className="flex flex-col">
         <div className="flex items-center justify-between px-5 pt-4">
           <span className="text-xs font-medium text-secondary">Original</span>
           <span className="text-[11px] text-secondary">
-            {original.length}/{MAX_LENGTH}
+            {wordCount.toLocaleString()} words ({original.length.toLocaleString()}/{MAX_LENGTH.toLocaleString()} chars)
           </span>
         </div>
         <textarea

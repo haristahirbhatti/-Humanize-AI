@@ -15,7 +15,7 @@ import { checkRateLimit } from "@/lib/rate-limit";
 
 export const runtime = "nodejs";
 
-const MAX_TEXT_LENGTH = 8000; // characters
+const MAX_TEXT_LENGTH = 90000; // characters (~15,000 words)
 const MIN_TEXT_LENGTH = 20;
 const MAX_REVISIONS = 1; // additional rewrite attempts beyond the first pass
 const MEANING_THRESHOLD = 90; // trigger a revision if meaningPreserved falls below this
@@ -72,7 +72,7 @@ export async function POST(req: NextRequest) {
   if (text.length > MAX_TEXT_LENGTH) {
     return NextResponse.json(
       {
-        error: `Your text is too long (${text.length} characters, limit ${MAX_TEXT_LENGTH}). Try processing it in smaller sections.`,
+        error: `Your text is too long (${text.length.toLocaleString()} characters, limit 15,000 words / 90,000 characters). Try processing it in smaller sections.`,
       },
       { status: 400 }
     );
