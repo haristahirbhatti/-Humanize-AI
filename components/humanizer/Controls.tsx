@@ -112,26 +112,26 @@ export function Controls({
         <label className="mb-2 block text-xs font-medium text-secondary">
           Humanization strength
         </label>
-        <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
+        <div className="grid grid-cols-2 gap-2">
           {STRENGTHS.map((s) => (
             <button
               key={s.value}
               type="button"
               onClick={() => onStrengthChange(s.value)}
-              className={`rounded-control border px-3 py-2 text-left transition-colors ${
+              className={`rounded-control border px-3 py-2.5 text-left transition-colors ${
                 strength === s.value
                   ? "border-primary bg-primary/10"
                   : "border-border hover:border-secondary/40"
               }`}
             >
               <div
-                className={`text-[13px] font-medium ${
+                className={`text-[13px] font-medium leading-snug ${
                   strength === s.value ? "text-primary-dark" : "text-text"
                 }`}
               >
                 {s.label}
               </div>
-              <div className="text-[11px] text-secondary">{s.hint}</div>
+              <div className="mt-0.5 text-[11px] leading-tight text-secondary">{s.hint}</div>
             </button>
           ))}
         </div>
